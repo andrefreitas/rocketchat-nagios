@@ -66,14 +66,13 @@ def render_template(template, args):
     return encode_special_characters(text)
 
 
-def make_data(args, config):
+def create_data(args, config):
     text = render_template(
         TEMPLATE_SERVICE if args.servicestate else TEMPLATE_HOST,
         args
     )
     state = args.servicestate if args.servicestate else args.hoststate
     color = config["colors"][state]
-
     payload = {
         "alias": config["alias"],
         "avatar": config["avatar"],
@@ -96,6 +95,6 @@ def request(url, data):
 
 if __name__ == "__main__":
     args = parse()
-    data = make_data(args, CONFIG)
+    data = create_data(args, CONFIG)
     response = request(args.url, data)
     print response

@@ -6,4 +6,4 @@ rocketchat:
   links:
     - mongo
   ports:
-    - 3000
+    - 32769:3000

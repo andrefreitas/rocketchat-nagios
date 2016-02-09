@@ -1,5 +1,7 @@
 # Rocketchat Nagios Plugin
-Creates Rocketchat notifications from Nagios.
+Send notifications to a Rocketchat channel from Nagios.
+
+![Screenshot](images/screenshot.png)
 
 # Usage
 Assuming you are using Nagios 4, the steps are:
@@ -18,7 +20,6 @@ Assuming you are using Nagios 4, the steps are:
         }
 
 3. Create the contact:
-
 
         define contact {
           contact_name                             rocketchat
@@ -41,6 +42,21 @@ Assuming you are using Nagios 4, the steps are:
         }
 
 # Contributing
-Launch a development instance of Rocket with Docker:
+1. Launch a development instance of Rocket with Docker:
 
-    docker-compose up
+        docker-compose up
+
+
+2. Create a new user and channel by accessing Rocket Chat in your browser.
+
+3. Create a new channel called _nagios_.
+
+4. Create a new incoming webhook integration for that channel.
+
+5. Create a file url.txt with the complete url of the webhook:
+
+        http://192.168.99.100:32769/hooks/jyfgPbsat6cKYxXWS/rocket.cat/O1%2B5u6L2OzvJJYyH6wcfEYifcbbUvoOVsP37Zd%2Fc3b0%3D
+
+6. Test a notification:
+
+        make test-ok test-critical test-unknown test-warning
