@@ -27,7 +27,7 @@ import json
 VERSION = "0.0.1"
 
 CONFIG = {
-    "avatar": "https://slack.global.ssl.fastly.net/7bf4/img/services/nagios_128.png", #noqa
+    "avatar": "https://raw.githubusercontent.com/andrefreitas/rocketchat-nagios/master/images/nagios_128.png", #noqa
     "alias": "Nagios",
     "colors": {
         "OK": "#36a64f",
