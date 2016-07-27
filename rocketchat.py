@@ -37,8 +37,8 @@ CONFIG = {
     }
 }
 
-TEMPLATE_SERVICE = "{hostalias}/{servicedesc} is {servicestate}:<br/>{serviceoutput}" #noqa
-TEMPLATE_HOST = "Host {hostalias} is {hoststate}:<br/>{hostoutput}"  #noqa
+TEMPLATE_SERVICE = "{hostalias}/{servicedesc} is {servicestate}:\n{serviceoutput}" #noqa
+TEMPLATE_HOST = "Host {hostalias} is {hoststate}:\n{hostoutput}"  #noqa
 
 def parse():
     parser = argparse.ArgumentParser(description='Sends Rocket.Chat webhooks')
