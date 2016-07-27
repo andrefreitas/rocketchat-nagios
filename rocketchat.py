@@ -43,6 +43,7 @@ TEMPLATE_HOST = "Host {hostalias} is {hoststate}:<br/>{hostoutput}"  #noqa
 def parse():
     parser = argparse.ArgumentParser(description='Sends Rocket.Chat webhooks')
     parser.add_argument('--url', help='Webhook URL', required=True)
+    parser.add_argument('--proxy', help='http(s) proxy')
     parser.add_argument('--hostalias', help='Host Alias', required=True)
     parser.add_argument('--notificationtype', help='Notification type',
                         required=True)
@@ -88,7 +89,11 @@ def create_data(args, config):
     return data
 
 
-def request(url, data):
+def request(url, data, args):
+    if args.proxy:
+        proxy = urllib2.ProxyHandler({'http': args.proxy, 'https': args.proxy})
+        opener = urllib2.build_opener(proxy)
+        urllib2.install_opener(opener)
     req = urllib2.Request(url, data)
     response = urllib2.urlopen(req)
     return response.read()
@@ -96,5 +101,5 @@ def request(url, data):
 if __name__ == "__main__":
     args = parse()
     data = create_data(args, CONFIG)
-    response = request(args.url, data)
+    response = request(args.url, data, args)
     print response
