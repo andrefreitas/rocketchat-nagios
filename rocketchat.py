@@ -47,6 +47,7 @@ def parse():
     parser = argparse.ArgumentParser(description='Sends Rocket.Chat webhooks')
     parser.add_argument('--url', help='Webhook URL', required=True)
     parser.add_argument('--proxy', help='http(s) proxy')
+    parser.add_argument('--channel', help='Rocket.Chat channel')
     parser.add_argument('--hostalias', help='Host Alias', required=True)
     parser.add_argument('--notificationtype', help='Notification type',
                         required=True)
@@ -87,6 +88,8 @@ def create_data(args, config):
             }
         ]
     }
+    if args.channel:
+        payload["channel"] = args.channel
 
     data = "payload=" + json.dumps(payload)
     return data
