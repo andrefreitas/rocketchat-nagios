@@ -33,7 +33,10 @@ CONFIG = {
         "OK": "#36a64f",
         "CRITICAL": "#d00000",
         "WARNING": "#daa038",
-        "UNKNOWN": "#e3e4e6"
+        "UNKNOWN": "#e3e4e6",
+        "DOWN": "#d00000",
+        "UNKNOWN": "#e3e4e6",
+        "UNREACHABLE": "#e3e4e6"
     }
 }
 
