@@ -35,6 +35,7 @@ CONFIG = {
         "WARNING": "#daa038",
         "UNKNOWN": "#e3e4e6",
         "DOWN": "#d00000",
+        "UP": "#40b207",
         "UNKNOWN": "#e3e4e6",
         "UNREACHABLE": "#e3e4e6"
     }
@@ -42,6 +43,7 @@ CONFIG = {
 
 TEMPLATE_SERVICE = "{hostalias}/{servicedesc} is {servicestate}:\n{serviceoutput}" #noqa
 TEMPLATE_HOST = "Host {hostalias} is {hoststate}:\n{hostoutput}"  #noqa
+
 
 def parse():
     parser = argparse.ArgumentParser(description='Sends Rocket.Chat webhooks')
@@ -57,7 +59,7 @@ def parse():
     parser.add_argument('--servicestate', help='Service State')
     parser.add_argument('--serviceoutput', help='Service Output')
     parser.add_argument('--version', action='version',
-                    version='%(prog)s {version}'.format(version=VERSION))
+                        version='%(prog)s {version}'.format(version=VERSION))
     args = parser.parse_args()
     return args
 
@@ -65,6 +67,7 @@ def parse():
 def encode_special_characters(text):
     text = text.replace("%", "%25")
     return text
+
 
 def render_template(template, args):
     text = template.format(**vars(args))
@@ -103,6 +106,7 @@ def request(url, data, args):
     req = urllib2.Request(url, data)
     response = urllib2.urlopen(req)
     return response.read()
+
 
 if __name__ == "__main__":
     args = parse()

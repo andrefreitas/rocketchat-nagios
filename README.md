@@ -44,7 +44,7 @@ Assuming you are using Nagios 4, the steps are:
 # Contributing
 1. Launch a development instance of Rocket with Docker:
 
-        docker-compose up
+        docker-compose up -d
 
 
 2. Create a new user and channel by accessing Rocket Chat in your browser.
