@@ -80,12 +80,14 @@ def create_data(args, config):
     )
     state = args.servicestate if args.servicestate else args.hoststate
     color = config["colors"][state]
+
     payload = {
         "alias": config["alias"],
         "avatar": config["avatar"],
+        "text": text.split('\n')[0],
         "attachments": [
             {
-                "text": text,
+                "text": text.split("\n",1)[1],
                 "color": color
             }
         ]
