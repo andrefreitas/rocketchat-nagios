@@ -11,12 +11,19 @@ Assuming you are using Nagios 4, the steps are:
 
         define command {
               command_name notify-service-by-rocketchat
-              command_line /usr/local/nagios/libexec/rocketchat.py --url WEBHOOK_URL --hostalias "$HOSTNAME$" --notificationtype "$NOTIFICATIONTYPE$" --servicedesc "$SERVICEDESC$" --servicestate "$SERVICESTATE$" --serviceoutput "$SERVICEOUTPUT$"
+              command_line /usr/local/nagios/libexec/rocketchat.py --url WEBHOOK_URL --hostalias "$HOSTNAME$" --servicedesc "$SERVICEDESC$" --servicestate "$SERVICESTATE$" --serviceoutput "$SERVICEOUTPUT$"
         }
 
         define command {
               command_name notify-host-by-rocketchat
-              command_line /usr/local/nagios/libexec/rocketchat.py --url WEBHOOK_URL --hostalias "$HOSTNAME$" --notificationtype "$NOTIFICATIONTYPE$" --hoststate "$HOSTSTATE$" --hostoutput "$HOSTOUTPUT$"
+              command_line /usr/local/nagios/libexec/rocketchat.py --url WEBHOOK_URL --hostalias "$HOSTNAME$" --hoststate "$HOSTSTATE$" --hostoutput "$HOSTOUTPUT$"
+        }
+
+You can also specify a Nagios URL parameter in order to get a valid URL to your alert in the Rocket Chat message __(replace NAGIOS_URL)__:
+
+        define command {
+              command_name notify-service-by-rocketchat
+              command_line /usr/local/nagios/libexec/rocketchat.py --url WEBHOOK_URL --hostalias "$HOSTNAME$" --servicedesc "$SERVICEDESC$" --servicestate "$SERVICESTATE$" --serviceoutput "$SERVICEOUTPUT$" --nagiosurl "NAGIOS_URL"
         }
 
 3. Create the contact:
